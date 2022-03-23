@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using VueCliMiddleware;
 
 namespace CoreForm
 {
@@ -32,6 +33,10 @@ namespace CoreForm
             services.AddMemoryCache();
             services.AddSignalR();
             services.AddDotNetify();
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp";
+            });
             services.AddControllers();
             services.AddScoped(typeof(CoreForm.DataInterfaces.IFormDefinitionProvider), typeof(CoreForm.Data.LiteDB.FormDefinitionProvider));
         }
@@ -39,35 +44,38 @@ namespace CoreForm
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             app.UseWebSockets();
-            app.UseSignalR(routes => routes.MapDotNetifyHub());
+            // app.UseSignalR(routes => routes.MapDotNetifyHub());
             app.UseDotNetify();
 
-#if DEBUG
-            // Optional: utilize webpack hot reload feature.
-            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-            {
-                HotModuleReplacement = true,
-                HotModuleReplacementClientOptions = new Dictionary<string, string> { { "reload", "true" } },
-            });
-#endif
             //app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseResponseCaching();
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            app.Run(async (context) =>
+
+            app.UseResponseCaching();
+
+            app.UseSpaStaticFiles();
+
+            app.UseSpa(spa =>
             {
-                context.Response.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                if (env.IsDevelopment())
+                    spa.Options.SourcePath = "ClientApp/";
+                else
+                    spa.Options.SourcePath = "dist";
+
+                if (env.IsDevelopment())
                 {
-                    Public = true,
-                    MaxAge = TimeSpan.FromSeconds(1)
-                };
-                context.Response.ContentType = "text/html";
-                using (var reader = new StreamReader(File.OpenRead("wwwroot/index.html")))
-                    await context.Response.WriteAsync(reader.ReadToEnd());
+                    spa.UseVueCli(npmScript: "serve");
+                }
+
             });
 
 
