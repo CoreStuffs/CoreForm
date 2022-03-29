@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using DotNetify;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using VueCliMiddleware;
 
 namespace CoreForm
 {
@@ -24,21 +20,21 @@ namespace CoreForm
             Configuration = configuration;
         }
 
-        internal static IConfiguration Configuration { get; private set; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddResponseCaching();
-            services.AddMemoryCache();
-            services.AddSignalR();
-            services.AddDotNetify();
+
+            services.AddControllersWithViews();
+
+            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp";
+                configuration.RootPath = "ClientApp/dist";
             });
-            services.AddControllers();
-            services.AddScoped(typeof(CoreForm.DataInterfaces.IFormDefinitionProvider), typeof(CoreForm.Data.LiteDB.FormDefinitionProvider));
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,38 +44,38 @@ namespace CoreForm
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseWebSockets();
-            // app.UseSignalR(routes => routes.MapDotNetifyHub());
-            app.UseDotNetify();
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
-            //app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseRouting();
-            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
-
-            app.UseResponseCaching();
-
-            app.UseSpaStaticFiles();
 
             app.UseSpa(spa =>
             {
-                if (env.IsDevelopment())
-                    spa.Options.SourcePath = "ClientApp/";
-                else
-                    spa.Options.SourcePath = "dist";
+                spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseVueCli(npmScript: "serve");
+                    spa.UseViteDevelopmentServer();
                 }
-
             });
-
-
-
         }
     }
 }

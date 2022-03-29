@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "CommonJS",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "strict": false,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": false,
+    "esModuleInterop": true,
+    "lib": [ "esnext", "dom" ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [ "src/*"],
+      "*": [ "*", "node_modules/*" ]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue" ]
+}
+

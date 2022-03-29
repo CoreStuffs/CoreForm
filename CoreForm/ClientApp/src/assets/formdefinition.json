@@ -1,0 +1,10 @@
+{
+  "id": "12345678",
+  "schema": [
+    {
+      "type": "textbox",
+      "maxlength": 50
+    }
+  ]
+
+}

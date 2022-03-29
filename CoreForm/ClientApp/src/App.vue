@@ -1,27 +1,13 @@
-<template>
-    Homes...
-  <nav-menu></nav-menu>
-  <router-view />
-</template>
-
-<script>
-    import NavMenu from './components/NavMenu.vue'
-
-export default {
-  name: 'App',
-  components: {
-      NavMenu
-  }
-}
+<script setup lang="ts">
+    // This starter template is using Vue 3 <script setup> SFCs
+    // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+    import FormRunner from './components/FormRunner.vue'
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<template>
+    <FormRunner  />
+</template>
+
+<style lang="less">
+    @import "../node_modules/uikit/src/less/uikit.less";
 </style>
