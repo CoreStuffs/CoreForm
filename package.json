@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@coreform/components": "^0.1.8",
+    "uikit": "^3.13.4"
+  }
+}
