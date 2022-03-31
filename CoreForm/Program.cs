@@ -18,7 +18,7 @@ namespace CoreForm
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+           Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((buildercontext, config) =>
                 {
                     var env = buildercontext.HostingEnvironment;
@@ -31,9 +31,11 @@ namespace CoreForm
                         .AddEnvironmentVariables()
                         .AddCommandLine(args);
                 })
+
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }

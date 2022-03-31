@@ -1,48 +1,51 @@
 <template>
     <div :schema="schema">
-        <label :for="schema.id" class="uk-form-label">{{ schema.label }}<div class="required-tag" v-if="$isrequired"></div></label>
+        <label :for="props.schema.id" class="uk-form-label">{{ props.schema.label }}</label>
         <div class="uk-form-controls">
-            <input
-                   :type="inputType"
-                   :placeholder="schema.placeholder"
+            <input :type="inputType"
                    class="uk-input uk-form-small"
-                   v-bind:class="{ 'uk-form-danger': $error }"
-                   :id="schema.id"
-                   v-model="data"
-                   @input="updateInput" />{{inputType}}
+                   v-bind:class="{ 'uk-form-danger': v$.myValue.$invalid }"
+                   :id="props.schema.id"
+                   :value="props.modelValue" @input="onInput" />{{inputType}}
         </div>
-        <span v-if="$errorMessage" class="error-message">{{ $errorMessage }}</span>
+        {{v$.myValue.$error}}
     </div>
 </template>
-<script>
-    import controlBase from "@/fields/controlBase.vue";
-    export default {
-        extends: controlBase,
-        data() {
-            return { data: this.value };
-        },
-        computed: {
-            inputType: function () {
-                return "text";
-            },
-        },
-        methods: {
-            updateInput: function () {
-                this.$emit("input", this.$el.getElementsByTagName("input")[0].value);
-                if (this.$validation) this.$validation.$touch();
-            },
-        },
-        watch: {
-            value: function (newValue) {
-                this.data = newValue;
-            },
-        },
-        props: {
-            value: {
-                type: String,
-                required: false,
-            },
-        },
-    };
+<script language="javascript" setup>
+    import { computed, reactive, ref } from 'vue'
+    import useVuelidate from '@vuelidate/core'
+    import { required, email } from '@vuelidate/validators'
+
+    const props = defineProps({
+        modelValue: String,
+        schema: Object
+    })
+
+    const formState = reactive({
+        myValue: props.modelValue,
+    })
+
+    const rules = {
+        myValue: {
+            required
+        }
+    }
+
+    const v$ = useVuelidate(rules, formState)
+
+
+    const emit = defineEmits(['update:modelValue'])
+
+    const inputType = computed(() => {
+        return "text";
+    })
+
+    const onInput = (event) => {
+
+        emit('update:modelValue', event.target.value);
+    }
+
+
+
 </script>
 

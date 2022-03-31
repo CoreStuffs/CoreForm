@@ -1,4 +1,4 @@
-import serverOption from './serverOption'
+import serverOption from './serverOption.js'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path'

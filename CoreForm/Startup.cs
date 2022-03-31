@@ -70,7 +70,6 @@ namespace CoreForm
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-
                 if (env.IsDevelopment())
                 {
                     spa.UseViteDevelopmentServer();
