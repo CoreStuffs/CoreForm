@@ -8,8 +8,8 @@
                    :id="props.schema.id"
                    v-model="value" />
 
-            <div class="input-errors" v-for="error of v$.value.$errors" :key="error.$uid">
-                <div class="uk-form-danger">{{ error.$message }}</div>
+            <div class="error-message" v-for="error of v$.value.$errors" :key="error.$uid">
+                {{ error.$message }}
             </div>
         </div>
    

@@ -8,6 +8,6 @@
     <FormRunner  />
 </template>
 
-<style lang="less">
- 
+<style lang="sass">
+ @import "@/assets/style.sass"
 </style>

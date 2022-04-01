@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     import UIkit from "uikit";
+    import axios from "axios";
     import textField from '@/fields/textField/control.vue'
     //UIkit.notification('Hello world.');
 
@@ -10,7 +11,10 @@
     })
     const data = ref({id:124578, value : ""})
     const schema = ref([{ id: "123", label: "Hello" }])
-    const count = ref(10)
+
+    fetch("https://restcountries.com/v2/regionalbloc/eu")
+        .then(response => response.json())
+        .then(data => (alert(JSON.stringify(data))))
 
 </script>
 
@@ -24,8 +28,6 @@
                     <fieldset class="uk-fieldset">
                         <textField v-model="data.value" :schema="schema[0]" />
                         <input v-model="data.value"/>
-                        <hr/>
-                        <button type="button" @click="count++">count is: {{ count }}</button>
                     </fieldset>
                 </form>
                 <div>{{schema}}</div>
