@@ -4,48 +4,52 @@
         <div class="uk-form-controls">
             <input :type="inputType"
                    class="uk-input uk-form-small"
-                   v-bind:class="{ 'uk-form-danger': v$.myValue.$invalid }"
+                   v-bind:class="{ 'uk-form-danger': v$.value.$invalid }"
                    :id="props.schema.id"
-                   :value="props.modelValue" @input="onInput" />{{inputType}}
+                   v-model="value" />
+
+            <div class="input-errors" v-for="error of v$.value.$errors" :key="error.$uid">
+                <div class="uk-form-danger">{{ error.$message }}</div>
+            </div>
         </div>
-        {{v$.myValue.$error}}
+   
     </div>
 </template>
 <script language="javascript" setup>
     import { computed, reactive, ref } from 'vue'
     import useVuelidate from '@vuelidate/core'
-    import { required, email } from '@vuelidate/validators'
+    import { required, email, minLength } from '@vuelidate/validators'
+
+    const emit = defineEmits(['update:modelValue'])
 
     const props = defineProps({
         modelValue: String,
         schema: Object
     })
 
-    const formState = reactive({
-        myValue: props.modelValue,
-    })
-
     const rules = {
-        myValue: {
-            required
+        value: {
+            email: email,
+            minLength : minLength(3)
         }
     }
 
-    const v$ = useVuelidate(rules, formState)
 
+    const value = computed({
+        get() {
+            return props.modelValue
+        },
+        set(val) {
+            emit('update:modelValue', val)
+            v$.value.$touch()
+        }
+    });
 
-    const emit = defineEmits(['update:modelValue'])
+    const v$ = useVuelidate(rules, { value })
 
     const inputType = computed(() => {
         return "text";
     })
-
-    const onInput = (event) => {
-
-        emit('update:modelValue', event.target.value);
-    }
-
-
 
 </script>
 

@@ -8,7 +8,7 @@
         FormDefinition: { type: [String] },
         FormData: { type: [String] }
     })
-    const data = ref("test")
+    const data = ref({id:124578, value : ""})
     const schema = ref([{ id: "123", label: "Hello" }])
     const count = ref(10)
 
@@ -22,8 +22,8 @@
                 <h1>{{ msg }}</h1>
                 <form class="uk-form-stacked">
                     <fieldset class="uk-fieldset">
-                        <textField v-model="data" :schema="schema[0]" />
-                        <input v-model="data"/>
+                        <textField v-model="data.value" :schema="schema[0]" />
+                        <input v-model="data.value"/>
                         <hr/>
                         <button type="button" @click="count++">count is: {{ count }}</button>
                     </fieldset>
