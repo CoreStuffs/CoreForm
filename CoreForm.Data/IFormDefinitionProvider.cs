@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace CoreForm.DataInterfaces
+namespace CoreStuffs.CoreForm.DataInterfaces
 {
     public interface IFormDefinitionProvider
     {

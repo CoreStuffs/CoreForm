@@ -1,20 +1,44 @@
-<script setup lang="ts">
-    import { ref } from 'vue'
+<script setup language="javascript">
+    import { ref, markRaw, defineAsyncComponent, computed  } from 'vue'
     import UIkit from "uikit";
-    import axios from "axios";
-    import textField from '@/fields/textField/control.vue'
-    //UIkit.notification('Hello world.');
+    
+    //import textfield from '@/fields/textfield/control.vue'
 
-    defineProps({
-        FormDefinition: { type: [String] },
-        FormData: { type: [String] }
-    })
-    const data = ref({id:124578, value : ""})
-    const schema = ref([{ id: "123", label: "Hello" }])
+    //defineProps({
+    //    FormDefinition: { type: [String] },
+    //    FormData: { type: object }
+    //})
 
-    fetch("https://restcountries.com/v2/regionalbloc/eu")
+
+    const components = {
+        "textfield": defineAsyncComponent(() => import('@/fields/textfield/control.vue'))
+    }
+
+    const loadForm = (d) => {
+        schema.value = d.formDefinition;
+        model.value = d.formDataModel;
+        data.value = d.formInstanceData;
+        UIkit.notification('Form load completed');
+    }
+
+    fetch("/api/forminstance/10B4415E-BF75-4993-AC64-EE17D7E8791C")
         .then(response => response.json())
-        .then(data => (alert(JSON.stringify(data))))
+        .then(d => {
+            loadForm(d)
+        })
+
+    const getComp = (name) => {
+        return markRaw(components[name])
+    }
+
+
+
+    const model = ref({})
+    const schema = ref({})
+    const data = ref({})
+
+
+
 
 </script>
 
@@ -26,11 +50,13 @@
                 <h1>{{ msg }}</h1>
                 <form class="uk-form-stacked">
                     <fieldset class="uk-fieldset">
-                        <textField v-model="data.value" :schema="schema[0]" />
-                        <input v-model="data.value"/>
+                        <div>
+                            <component v-for="comp in schema.components" :key="comp.id" :is="getComp(comp.type)" v-model="data.values[comp.dataProperty]" :schema="comp" />
+                        </div>
                     </fieldset>
                 </form>
                 <div>{{schema}}</div>
+                <div>{{model}}</div>
                 <div>{{data}}</div>
             </div>
         </div>

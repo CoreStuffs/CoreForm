@@ -19,7 +19,7 @@ namespace CoreStuffs.CoreForm.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,30 @@ namespace CoreStuffs.CoreForm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {&quot;id&quot;: &quot;1234567890&quot;,
+        ///    &quot;components&quot;: [
+        ///            {
+        ///                    &quot;label&quot;: &quot;Text Area 1&quot;,
+        ///                    &quot;autoExpand&quot;: false,
+        ///                    &quot;spellcheck&quot;: true,
+        ///                    &quot;tableView&quot;: true,
+        ///                    &quot;calculateServer&quot;: false,
+        ///                    &quot;id&quot;: &quot;123525&quot;,
+        ///                    &quot;type&quot;: &quot;textfield&quot;,
+        ///                    &quot;input&quot;: true,
+        ///                    &quot;variable&quot;: &quot;Firstname&quot;
+        ///                },
+        ///           
+        ///                {
+        ///                    &quot;label&quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string formData {
+            get {
+                return ResourceManager.GetString("formData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {
         ///    &quot;display&quot;: &quot;wizard&quot;,
         ///	&quot;id&quot;: &quot;1234567890&quot;,
@@ -80,9 +104,35 @@ namespace CoreStuffs.CoreForm.Properties {
         ///                    &quot;type&quot;: &quot;hidden&quot;,
         ///   [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string formData {
+        internal static string formData1 {
             get {
-                return ResourceManager.GetString("formData", resourceCulture);
+                return ResourceManager.GetString("formData1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///    &quot;display&quot;: &quot;wizard&quot;,
+        ///	&quot;id&quot;: &quot;1234567890&quot;,
+        ///    &quot;components&quot;: [
+        ///        {
+        ///            &quot;title&quot;: &quot;Page 1&quot;,
+        ///            &quot;label&quot;: &quot;Page 1&quot;,
+        ///            &quot;type&quot;: &quot;panel&quot;,
+        ///            &quot;key&quot;: &quot;page1&quot;,
+        ///            &quot;components&quot;: [
+        ///				{
+        ///                    &quot;label&quot;: &quot;Ids&quot;,
+        ///                    &quot;redrawOn&quot;: &quot;data&quot;,
+        ///                    &quot;customDefaultValue&quot;: &quot;value = \&quot;0987654321\&quot;&quot;,
+        ///                    &quot;calculateServer&quot;: false,
+        ///                    &quot;key&quot;: &quot;ids&quot;,
+        ///                    &quot;type&quot;: &quot;hidden&quot;,
+        ///   [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string formData2 {
+            get {
+                return ResourceManager.GetString("formData2", resourceCulture);
             }
         }
     }

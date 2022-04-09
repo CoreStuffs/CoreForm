@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreFrom.ClientInterfaces.DTO
+namespace CoreStuffs.CoreForm.ClientInterfaces.DTO
 {
     public class FormDefinition
     {

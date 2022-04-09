@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreForm.Data\CoreForm.DataInterfaces.csproj" />
+    <ProjectReference Include="..\CoreForm.Data\CoreStuffs.CoreForm.DataInterfaces.csproj" />
   </ItemGroup>
 
 </Project>

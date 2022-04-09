@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreStuffs.CoreForm.DataInterfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
-namespace CoreForm
+namespace CoreStuffs.CoreForm
 {
     public class Startup
     {
@@ -25,6 +26,7 @@ namespace CoreForm
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IFormDefinitionProvider>(new CoreStuffs.CoreForm.Data.LiteDB.FormDefinitionProvider());
 
             services.AddControllersWithViews();
 

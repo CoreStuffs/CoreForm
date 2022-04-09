@@ -1,0 +1,4 @@
+{
+  "E7A4BBD1-62F1-48A8-8F8E-2C132438C489": { "label": "Firname", "type": "String" },
+  "4E98C4F2-9010-4C7B-B1D9-3F07B5DC653C": { "label": "Lastname", "type": "String" }
+}

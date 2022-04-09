@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreForm
+namespace CoreStuffs.CoreForm
 {
     public static class ViteHelper
     {

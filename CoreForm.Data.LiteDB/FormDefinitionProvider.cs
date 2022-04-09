@@ -1,9 +1,9 @@
-﻿using CoreForm.DataInterfaces;
-using CoreForm.DataInterfaces.DataEntities;
+﻿using CoreStuffs.CoreForm.DataInterfaces;
+using CoreStuffs.CoreForm.DataInterfaces.DataEntities;
 using System;
 using System.Collections.Generic;
 
-namespace CoreForm.Data.LiteDB
+namespace CoreStuffs.CoreForm.Data.LiteDB
 {
     public class FormDefinitionProvider : IFormDefinitionProvider
     {

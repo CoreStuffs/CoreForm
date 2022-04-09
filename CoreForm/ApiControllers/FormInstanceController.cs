@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreForm.Data;
-using CoreForm.DataInterfaces;
+using CoreStuffs.CoreForm.Data;
+using CoreStuffs.CoreForm.DataInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace CoreForm.ApiControllers
+namespace CoreStuffs.CoreForm.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FormDefinitionController : ControllerBase
+    public class FormInstanceController : ControllerBase
     {
         private IFormDefinitionProvider formDefinitionProvider;
-        public FormDefinitionController(IFormDefinitionProvider formDefinitionProvider)
+        public FormInstanceController(IFormDefinitionProvider formDefinitionProvider)
         {
             this.formDefinitionProvider = formDefinitionProvider;
         }
@@ -30,9 +32,13 @@ namespace CoreForm.ApiControllers
 
         // GET api/<FormDefinitionController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Object Get(Guid id)
         {
-            return "value of " + id;
+            string fd = System.IO.File.ReadAllText("Form1Definition.json");
+            string fdm = System.IO.File.ReadAllText("Flow1DataModel.json");
+            string fid = System.IO.File.ReadAllText("Flow1InstanceData.json");
+            string o = "{\"formDefinition\" : " + fd + ", \"formDataModel\" : " + fdm + ", \"formInstanceData\" : " + fid + "}";
+            return base.Content(o, "application/json", System.Text.Encoding.UTF8);
         }
 
         // POST api/<FormDefinitionController>

@@ -1,0 +1,29 @@
+{
+  "id": "1234567890",
+  "components": [
+    {
+      "label": "Text Area 1",
+      "autoExpand": false,
+      "spellcheck": true,
+      "tableView": true,
+      "calculateServer": false,
+      "id": "123525",
+      "type": "textfield",
+      "input": true,
+      "dataProperty": "E7A4BBD1-62F1-48A8-8F8E-2C132438C489"
+    },
+
+    {
+      "label": "Text Area 2",
+      "autoExpand": false,
+      "spellcheck": true,
+      "tableView": true,
+      "calculateServer": false,
+      "id": "6890987",
+      "type": "textfield",
+      "input": true,
+      "dataProperty": "4E98C4F2-9010-4C7B-B1D9-3F07B5DC653C"
+    }
+
+  ]
+}

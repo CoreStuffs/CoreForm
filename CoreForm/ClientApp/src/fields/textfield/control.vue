@@ -20,6 +20,8 @@
     import useVuelidate from '@vuelidate/core'
     import { required, email, minLength } from '@vuelidate/validators'
 
+    name : "textfield"
+
     const emit = defineEmits(['update:modelValue'])
 
     const props = defineProps({

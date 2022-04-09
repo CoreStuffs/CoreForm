@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreForm.DataInterfaces.DataEntities
+namespace CoreStuffs.CoreForm.DataInterfaces.DataEntities
 {
     public class FormDefinition
     {

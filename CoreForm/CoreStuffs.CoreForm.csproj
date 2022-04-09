@@ -50,11 +50,28 @@
 	  <None Remove="ClientApp\dist\js\chunk-vendors.9c8a4d41.js" />
 	  <None Remove="ClientApp\dist\js\chunk-vendors.9c8a4d41.js.map" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CoreForm.Data.LiteDB\CoreStuffs.CoreForm.Data.LiteDB.csproj" />
+	  <ProjectReference Include="..\CoreForm.Data\CoreStuffs.CoreForm.DataInterfaces.csproj" />
+	  <ProjectReference Include="..\CoreFrom.ClientInterfaces\CoreStuffs.CoreForm.ClientInterfaces.csproj" />
+	</ItemGroup>
 	
 	
   <ItemGroup>
-    <ProjectReference Include="..\CoreForm.Data.LiteDB\CoreForm.Data.LiteDB.csproj" />
-    <ProjectReference Include="..\CoreForm.Data\CoreForm.DataInterfaces.csproj" />
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+	
+	
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 

@@ -118,6 +118,148 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="formData" xml:space="preserve">
+    <value>{"id": "1234567890",
+    "components": [
+            {
+                    "label": "Text Area 1",
+                    "autoExpand": false,
+                    "spellcheck": true,
+                    "tableView": true,
+                    "calculateServer": false,
+                    "id": "123525",
+                    "type": "textfield",
+                    "input": true,
+                    "variable": "Firstname"
+                },
+           
+                {
+                    "label": "Text Area 2",
+                    "autoExpand": false,
+                    "spellcheck": true,
+                    "tableView": true,
+                    "calculateServer": false,
+                    "id": "6890987",
+                    "type": "textfield",
+                    "input": true,
+                    "variable": "Lastname"
+                }
+               
+    ]
+}</value>
+  </data>
+  <data name="formData1" xml:space="preserve">
+    <value>{
+    "display": "wizard",
+	"id": "1234567890",
+    "components": [
+        {
+            "title": "Page 1",
+            "label": "Page 1",
+            "type": "panel",
+            "key": "page1",
+            "components": [
+				{
+                    "label": "Ids",
+                    "redrawOn": "data",
+                    "customDefaultValue": "value = \"0987654321\"",
+                    "calculateServer": false,
+                    "key": "ids",
+                    "type": "hidden",
+                    "input": true,
+                    "tableView": false
+                },
+                {
+                    "label": "Text Area",
+                    "autoExpand": false,
+                    "spellcheck": true,
+                    "tableView": true,
+                    "calculateServer": false,
+                    "key": "textArea",
+                    "type": "textarea",
+                    "input": true
+                },
+                {
+                    "label": "Select",
+                    "widget": "choicesjs",
+                    "tableView": false,
+                    "dataSrc": "url","valueProperty":"value","validate": {
+                "required": true
+            },
+           "dataType": "string",
+            "data": {"url": "/DataSource/12345" },
+                    "selectThreshold": 0.3,
+                    "calculateServer": false,
+                    "key": "select",
+                    "type": "select",
+                    "indexeddb": {
+                        "filter": {}
+                    },
+                    "input": true,
+                    "disableLimit": false
+                }
+            ],
+            "input": false,
+            "tableView": false
+        },
+        {
+            "title": "Page 2",
+            "label": "Page 2",
+            "type": "panel",
+            "key": "page2",
+            "components": [
+                {
+            "label": "Upload",
+            "tableView": false,
+            "storage": "base64",
+            "webcam": true,
+            "fileTypes": [
+                {
+                    "label": "",
+                    "value": ""
+                }
+            ],
+            "calculateServer": false,
+            "key": "upload",
+            "type": "file",
+            "input": true,
+            "options": {
+                "indexeddb": "test",
+                "indexeddbTable": "test"
+            }
+        },
+                {
+                    "label": "Radio",
+                    "optionsLabelPosition": "right",
+                    "inline": false,
+                    "tableView": false,
+                    "values": [
+                        {
+                            "label": "test",
+                            "value": "123",
+                            "shortcut": "E"
+                        }
+                    ],
+                    "calculateServer": false,
+                    "key": "radio1",
+                    "type": "radio",
+                    "input": true
+                },
+                {
+                    "label": "Signature",
+                    "tableView": false,
+                    "calculateServer": false,
+                    "key": "signature",
+                    "type": "signature",
+                    "input": true
+                }
+            ],
+            "input": false,
+            "tableView": false
+        }
+    ]
+}</value>
+  </data>
+  <data name="formData2" xml:space="preserve">
     <value>{
     "display": "wizard",
 	"id": "1234567890",
