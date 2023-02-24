@@ -13,7 +13,7 @@
 		<PackageReference Include="DotNetify.Core" Version="5.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.12" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-		  <PackageReference Include="LiteDB" Version="5.0.11" />
+		  <PackageReference Include="LiteDB" Version="5.0.13" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.0" />
 	</ItemGroup>
 
